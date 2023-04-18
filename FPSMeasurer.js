@@ -22,7 +22,7 @@ class FPSMeasurer {
     async saveFPSData() {
         while (this.measuring) {
             if (this.secondsCount == this.beforeDuration) {
-                alert('Ready to start');
+                console.log(' ! ! Ready to start ! ! ');
             }
             this.fpsData.push({ second: this.secondsCount, fps: this.frameCount });
             this.frameCount = 0;
