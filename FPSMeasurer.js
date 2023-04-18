@@ -67,7 +67,7 @@ class FPSMeasurer {
 
         async function handleMouseUp() {
             await new Promise((resolve) => setTimeout(resolve, 1000));
-            
+
             console.log(`TIME FRAME (second): ${this.secondsCount} | END INTERACTION WITH SELECTOR: ${handladSelector}`)
             const interactionEndIndex = this.fpsData.length;
 
@@ -111,17 +111,17 @@ class FPSMeasurer {
             document.removeEventListener('mouseup', handleMouseUp.bind(this));
 
             const lastRunResults = {
-                baseLine: {
+                '00_beforeInteraction': {
                     data: baseLine,
                     averageFPS: averageBaseLine,
                     domChanges: domChangesBefore,
                 },
-                testData: {
+                '01_testData': {
                     data: testData,
                     averageFPS: averageTestData,
                     domChanges: domChangesDuring,
                 },
-                afterData: {
+                '02_afterInteraction': {
                     data: afterData,
                     averageFPS: averageAfterData,
                     domChanges: domChangesAfter,
