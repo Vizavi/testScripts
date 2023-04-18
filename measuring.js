@@ -1,4 +1,4 @@
-export default class FPSMeasurer {
+class FPSMeasurer {
     constructor(selectors, beforeDUration = 10, afterDuration = 10) {
         this.fpsData = [];
         this.frameCount = 0;
@@ -142,6 +142,8 @@ export default class FPSMeasurer {
         });
     }
 }
+
+export default FPSMeasurer;
 
 //const fpsMeasurer1 = new FPSMeasurer(['[class="right-resize-cursor handle handle-resize-side right"]', '[class="handle handle-push handle-drag-with-anchors showHover section"]']);
 //fpsMeasurer1.startMeasurement();
