@@ -83,16 +83,17 @@ class FPSMeasurer {
             });
 
             await new Promise((resolve) => setTimeout(resolve, testData.length * 1000));
+            
             observerDuring.disconnect();
+            document.removeEventListener('mouseup', handleMouseUp.bind(this));
 
             const observerAfter = this.observeDOMChanges((mutationsList) => {
                 domChangesAfter += mutationsList.length;
             });
             await new Promise((resolve) => setTimeout(resolve, this.afterDuration * 1000));
+
             observerAfter.disconnect();
             this.measuring = false;
-
-            console.log('interactionEndIndex' + interactionEndIndex, 'this.afterDuration' + this.afterDuration,)
 
             const afterData = this.fpsData.slice(interactionEndIndex, interactionEndIndex + this.afterDuration);
             const averageAfterData = this.calculateAverageFPS(afterData);
@@ -108,7 +109,7 @@ class FPSMeasurer {
             console.log('AFTER INTERACTION ', 'Average FPS:', averageAfterData, 'DOM Changes:', domChangesAfter);
             console.table(afterData);
 
-            document.removeEventListener('mouseup', handleMouseUp.bind(this));
+           
 
             const lastRunResults = {
                 '00_beforeInteraction': {
@@ -150,6 +151,8 @@ class FPSMeasurer {
     removeEventListeners() {
         this.boundEventHandlers.forEach(({ element, handler }) => {
             element.removeEventListener('mousedown', handler);
+            element.removeEventListener('mouseUp', handler);
+
         });
         this.boundEventHandlers = [];
     }
