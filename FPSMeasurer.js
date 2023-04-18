@@ -145,6 +145,3 @@ class FPSMeasurer {
 
 module.exports = {FPSMeasurer};
 
-//const fpsMeasurer1 = new FPSMeasurer(['[class="right-resize-cursor handle handle-resize-side right"]', '[class="handle handle-push handle-drag-with-anchors showHover section"]']);
-//fpsMeasurer1.startMeasurement();
-
