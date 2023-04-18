@@ -40,5 +40,7 @@ class scriptTest {
         this.triggerMouseEvent(element, 'mouseup', { clientX: this.targetX, clientY: this.targetY });
     }
 }
+
+export default scriptTest;
 // const test1 = new scriptTest('[class="right-resize-cursor handle handle-resize-side right"]', 650, 500);
 //await test1.dragElementToSelector()
