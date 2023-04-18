@@ -1,13 +1,14 @@
 class FPSMeasurer {
-    constructor(selectors, beforeDUration = 10, afterDuration = 10) {
+    constructor(selectors, runTestonReady = '', beforeDUration = 10, afterDuration = 10) {
         this.fpsData = [];
         this.frameCount = 0;
         this.secondsCount = 0;
         this.measuring = true;
+        this.boundEventHandlers = [];
         this.selectors = selectors;
         this.beforeDuration = beforeDUration;
         this.afterDuration = afterDuration;
-        this.boundEventHandlers = [];
+        this.runTestonReady = runTestonReady;
     }
 
     measureFPS() {
@@ -23,6 +24,8 @@ class FPSMeasurer {
         while (this.measuring) {
             if (this.secondsCount == this.beforeDuration) {
                 console.log(' ! ! Ready to start ! ! ');
+                if (this.runTestonReady)
+                    this.runTestonReady();
             }
             this.fpsData.push({ second: this.secondsCount, fps: this.frameCount });
             this.frameCount = 0;
