@@ -128,7 +128,7 @@ class FPSMeasurer {
                 },
             };
 
-            const oldResaults = Array.from(JSON.parse(localStorage.getItem('FPSMeasurementResults'))) || [];
+            const oldResaults = Array.from(JSON.parse(localStorage.getItem('FPSMeasurementResults')) || []);
 
             const newResults = [...oldResaults, lastRunResults];
 
