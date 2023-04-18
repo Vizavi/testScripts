@@ -1,5 +1,5 @@
 class FPSMeasurer {
-    constructor(selectors, runTestonReady = '', beforeDUration = 10, afterDuration = 10) {
+    constructor(selectors = [], runTestonReady = '', beforeDUration = 5, afterDuration = 5) {
         this.fpsData = [];
         this.frameCount = 0;
         this.secondsCount = 0;
@@ -106,12 +106,35 @@ class FPSMeasurer {
             console.log('AFTER INTERACTION ', 'Average FPS:', averageAfterData, 'DOM Changes:', domChangesAfter);
             console.table(afterData);
 
-            console.log(this.fpsData);
-
             document.removeEventListener('mouseup', handleMouseUp.bind(this));
+
+            const results = {
+                baseLine: {
+                    data: baseLine,
+                    averageFPS: averageBaseLine,
+                    domChanges: domChangesBefore,
+                },
+                testData: {
+                    data: testData,
+                    averageFPS: averageTestData,
+                    domChanges: domChangesDuring,
+                },
+                afterData: {
+                    data: afterData,
+                    averageFPS: averageAfterData,
+                    domChanges: domChangesAfter,
+                },
+            };
+
+            localStorage.setItem('FPSMeasurementResults', JSON.stringify(results));
         }
 
         document.addEventListener('mouseup', handleMouseUp.bind(this));
+    }
+
+    showResults() {
+        const savedResults = JSON.parse(localStorage.getItem('FPSMeasurementResults'));
+        console.log(savedResults);
     }
 
     removeEventListeners() {
