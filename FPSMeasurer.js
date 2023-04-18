@@ -141,6 +141,10 @@ class FPSMeasurer {
         console.log(savedResults);
     }
 
+    resetLocalStorage() {
+        localStorage.removeItem('FPSMeasurementResults');
+    }
+
     removeEventListeners() {
         this.boundEventHandlers.forEach(({ element, handler }) => {
             element.removeEventListener('mousedown', handler);
