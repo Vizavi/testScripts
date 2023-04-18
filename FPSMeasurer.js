@@ -66,6 +66,8 @@ class FPSMeasurer {
         });
 
         async function handleMouseUp() {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            
             console.log(`TIME FRAME (second): ${this.secondsCount} | END INTERACTION WITH SELECTOR: ${handladSelector}`)
             const interactionEndIndex = this.fpsData.length;
 
