@@ -108,7 +108,7 @@ class FPSMeasurer {
 
             document.removeEventListener('mouseup', handleMouseUp.bind(this));
 
-            const results = {
+            const lastRunResults = {
                 baseLine: {
                     data: baseLine,
                     averageFPS: averageBaseLine,
@@ -126,7 +126,11 @@ class FPSMeasurer {
                 },
             };
 
-            localStorage.setItem('FPSMeasurementResults', JSON.stringify(results));
+            const oldResaults = JSON.parse(localStorage.getItem('FPSMeasurementResults')) || [];
+
+            const newResults = [...oldResaults, lastRunResults];
+
+            localStorage.setItem('FPSMeasurementResults', JSON.stringify(newResults));
         }
 
         document.addEventListener('mouseup', handleMouseUp.bind(this));
