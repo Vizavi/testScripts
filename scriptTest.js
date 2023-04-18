@@ -17,7 +17,9 @@ class scriptTest {
     }
 
     async dragElementToSelector() {
-        const element = document.querySelector(this.selector);
+        const previewFrame = document.getElementById('preview');
+        const element = previewFrame.contentDocument.querySelector(this.selector);
+
         if (!element) {
             console.error('Element not found for selector:', this.selector);
             return;
@@ -42,5 +44,6 @@ class scriptTest {
 }
 
 export default scriptTest;
-// const test1 = new scriptTest('[class="right-resize-cursor handle handle-resize-side right"]', 650, 500);
+
+//const test1 = new scriptTest('[class="right-resize-cursor handle handle-resize-side right"]', 650, 500);
 //await test1.dragElementToSelector()
