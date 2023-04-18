@@ -17,9 +17,10 @@ class scriptTest {
     }
 
     async dragElementToSelector() {
-        const previewFrame = document.getElementById('preview');
-        const element = previewFrame.contentDocument.querySelector(this.selector);
-
+       // const previewFrame = document.getElementById('preview');
+      //  const element = previewFrame.contentDocument.querySelector(this.selector);
+      const element = document.querySelector(this.selector);
+      
         if (!element) {
             console.error('Element not found for selector:', this.selector);
             return;
