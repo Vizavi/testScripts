@@ -36,11 +36,18 @@ class scriptTest {
         for (let i = 1; i <= this.steps; i++) {
             const currentX = startX + (this.targetX - startX) * (i / this.steps);
             const currentY = startY + (this.targetY - startY) * (i / this.steps);
-            this.triggerMouseEvent(element, 'mousemove', { clientX: currentX, clientY: currentY });
-            await new Promise((resolve) => setTimeout(resolve, stepDuration));
-        }
 
-        this.triggerMouseEvent(element, 'mouseup', { clientX: this.targetX, clientY: this.targetY });
+            const attachContainer =  document.querySelector('[Data-hook="attach-highlight-container"]') || false; 
+            const targetElement = attachContainer ? attachContainer : element; 
+
+            this.triggerMouseEvent(targetElement, 'mousemove', { clientX: currentX, clientY: currentY });
+            await new Promise((resolve) => setTimeout(resolve, stepDuration));
+
+        }
+        const attachContainer =  document.querySelector('[Data-hook="attach-highlight-container"]') || false; 
+        const targetElement = attachContainer ? attachContainer : element; 
+        
+        this.triggerMouseEvent(targetElement, 'mouseup', { clientX: this.targetX, clientY: this.targetY });
     }
 }
 
